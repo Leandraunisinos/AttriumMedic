@@ -9,8 +9,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Abre a tela de perfil diretamente
-        val intent = Intent(this, ProfileActivity::class.java)
+        //Iniciar o app diretamente na home :)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
 
         finish()
