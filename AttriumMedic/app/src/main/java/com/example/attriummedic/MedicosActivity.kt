@@ -1,12 +1,11 @@
 package com.example.attriummedic
 
+import androidx.cardview.widget.CardView
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.attriummedic.mock.MedicosMock
-import com.example.attriummedic.model.MedicosModel
+import com.example.attriummedic.mock.MedicoMock
 
 class MedicosActivity : AppCompatActivity() {
 
@@ -14,46 +13,103 @@ class MedicosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medicos)
 
+        setupMenu()
+        setupListaMedicos()
+    }
+
+    private fun setupMenu() {
+        findViewById<FrameLayout>(R.id.btnNavInicio).setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+
+        findViewById<FrameLayout>(R.id.btnNavConsultas).setOnClickListener {
+            startActivity(Intent(this, ConsultasActivity::class.java))
+            finish()
+        }
+
+        findViewById<FrameLayout>(R.id.btnNavPerfil).setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun setupListaMedicos() {
         val container = findViewById<LinearLayout>(R.id.containerDoctors)
 
-        val doctors = DoctorMock.getDoctors()
+        val medicos = MedicoMock.getMedicos()
 
-        doctors.forEach { doctor ->
+        medicos.forEach { medico ->
 
-            val card = LinearLayout(this).apply {
+            val card = CardView(this).apply {
+                radius = 16f
+                cardElevation = 4f
+                setCardBackgroundColor(0xFFFFFFFF.toInt())
+                useCompatPadding = true
+            }
+
+            val conteudo = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
-                setPadding(30, 30, 30, 30)
-                setBackgroundColor(0xFFFFFFFF.toInt())
-                elevation = 8f
+                setPadding(32, 32, 32, 32)
             }
 
-            val name = TextView(this).apply {
-                text = doctor.name
+            val containerTopo = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+            }
+
+            val imagem = ImageView(this).apply {
+                setImageResource(R.drawable.ic_launcher_foreground)
+                layoutParams = LinearLayout.LayoutParams(150, 150)
+            }
+
+            val info = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(24, 0, 0, 0)
+            }
+
+            val nome = TextView(this).apply {
+                text = medico.nome
                 textSize = 18f
+                setTextColor(0xFF1A2B22.toInt())
             }
 
-            val specialty = TextView(this).apply {
-                text = doctor.specialty
+            val especialidade = TextView(this).apply {
+                text = medico.especialidade
+                setTextColor(0xFF2E7D32.toInt())
+                setPadding(20, 8, 20, 8)
+                setBackgroundColor(0xFFE8F5E9.toInt())
             }
 
-            val description = TextView(this).apply {
-                text = doctor.description
+            val descricao = TextView(this).apply {
+                text = medico.descricao
+                setTextColor(0xFF6B7280.toInt())
             }
 
-            val button = Button(this).apply {
+            val botao = Button(this).apply {
                 text = "Agendar via WhatsApp"
+                setBackgroundColor(0xFF4CAF50.toInt())
+                setTextColor(0xFFFFFFFF.toInt())
             }
 
-            card.addView(name)
-            card.addView(specialty)
-            card.addView(description)
-            card.addView(button)
+            info.addView(nome)
+            info.addView(especialidade)
+            info.addView(descricao)
+
+            containerTopo.addView(imagem)
+            containerTopo.addView(info)
+
+            conteudo.addView(containerTopo)
+            conteudo.addView(botao)
+
+            card.addView(conteudo)
 
             val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            params.setMargins(0, 0, 0, 30)
+
+            val margin = (16 * resources.displayMetrics.density).toInt()
+            params.setMargins(0, 0, 0, margin)
 
             card.layoutParams = params
 
