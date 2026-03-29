@@ -20,15 +20,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="24dp">
 
             <TextView
-                android:text="Médicos"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#1A2B22"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Nossos Médicos"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1A2B22" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profissionais prontos para cuidar de você"
+                android:textSize="14sp"
+                android:textColor="#888"
+                android:layout_marginBottom="24dp" />
 
         </LinearLayout>
     </ScrollView>
