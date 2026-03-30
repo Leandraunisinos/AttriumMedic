@@ -2,6 +2,11 @@
 Unisinos - Cadeira: Programação para Dispositivos Móveis
 Hospital Attrium Medic 
 Grupo 01: Integrantes: Leandra Fernanda Vieira Friedrich, Muriel Albertina Nunes Lucas, Gabriel Martens da Silva e Lucas Nunes.
+        
+link do Trello : https://trello.com/b/wJwQFCvg/attriummedic-desafio.
+  
+link do Miro: https://miro.com/app/board/uXjVG2p0Vrk=/. 
+
 
 Desafio
 Prazo de envio
